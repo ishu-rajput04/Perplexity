@@ -3,6 +3,7 @@ import authRouter from "./routes/auth.routes.js";
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import morgan from "morgan"
+import chatRouter from "./routes/chat.routes.js";
 const app = express()
 
 // middlewares
@@ -13,9 +14,12 @@ app.use(cors({
    credentials:true
 }))
 app.use(morgan("dev"))  
+
 /*
 authRouter is used to handle all the routes related to authentication. It is mounted on the /api/auth path, so any requests to /api/auth will be handled by the authRouter. 
  */
 app.use("/api/auth", authRouter)
+
+app.use("/api/chats", chatRouter)
 
 export default app;
