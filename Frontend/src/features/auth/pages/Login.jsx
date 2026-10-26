@@ -23,9 +23,11 @@ export default function Login() {
   const { handleLogin } = useAuth();
   const user = useSelector((state) => state.auth.user);
   const loading = useSelector((state) => state.auth.loading);
+
   if (!loading && user) {
     return <Navigate to={"/"} replace />;
   }
+  
   const formSubmitHandler = async (data) => {
     reset();
     const { email, password } = data;
@@ -33,6 +35,7 @@ export default function Login() {
     await handleLogin({ email, password });
     navigate("/");
   };
+
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#050B18] px-5 py-12 text-white">
       <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-blue-600/20 blur-[120px]" />
